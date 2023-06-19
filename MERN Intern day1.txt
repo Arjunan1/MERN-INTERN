@@ -1,0 +1,378 @@
+1)What is DBMS?
+	It is used to store the data and files together and manage the data in the database.
+
+
+2)Database Components:
+	>Hardware
+	>Software
+
+3)Architecture:
+	>1 Tier -Direct access
+	>2 Tier -Server(DB) and Client(Application,User)
+	>3 Tier -User|Application|Server
+
+4)RDBMS:
+	Relational Database Management System-used in Common field but Different data.
+	Using tables.
+	Structured Way of storing data
+
+5)Types of DB:
+	1.Distributed -one db consist one table and accessed by others db.(student db)
+	2.Centralized -one db consist many table accessed by other db.
+	3.Relational -known input
+	4.Graph -network-many to many
+	5.NoSQL -
+	6.Cloud -
+
+6)NoSQL DB:
+	UnStructured Db
+	Storing Files,img,doc,etc..,
+
+7)network-graph-many to many-unstructured-nosql 
+  hierarchy-tree-one to many-structured-sql
+	
+8)Components of DBMS:
+>configuring authentication and authorization
+>providing databckups and snapshots
+>query language
+
+9)meta data-data for additional info(info of info,how,what about the data)
+
+10)Model of data:
+>ER model- through structured-pictorial representation-known data-SQL
+>Object based model-improvised structured-unstructured-NoSQL
+>Semistructured data model-both structured and unstructured-MongoDB
+
+10)ER Model
+entity=real tym obj-rect
+attribute=object property-oval
+relationship-rhombus
+
+11)Attributes:
+	Unique:oval
+	composite:underline
+	Derieved:derived from other attributes-dotted
+	multivalued:double oval
+
+12)Entity:
+	Strong Entity:rect
+	Weak Entity:double rect
+
+13)Server:
+	>It executes the request and response to that request when asked
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------SQL:-
+>in table if we consider only one row or column is called tuple.
+
+>>types
+
+>DDL=Data definition language(create,alter,drop,truncate)
+>DML=Data manipulation language(insert,update,delete)
+>DCL=Data control language(grant,revoke)
+>TCL=Transaction Control language(commit,rollback,savepoint)
+>DQL=Data Query Language(select)
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------task:
+	>sort a particular col in both ascending and decending order
+	>count
+____________________________________________________________________________________________________________________________________________________________
+SQL PROGRAM:-
+1)create,insert,select:
+	CREATE TABLE students (id int,name varchar(30),class varchar(10));
+ 	insert into students values(1,'Arjun','CSE A');
+	insert into students values(2,'Dinesh','ECE A');
+	insert into students values(3,'Dhiyanesh','IT');
+	insert into students values(4,'Bharathan','AIDS');
+	select * from students;
+
+  OUTPUT:
+	1|Arjun|CSE A
+	2|Dinesh|ECE A
+	3|Dhiyanesh|IT
+	4|Bharathan|AIDS
+
+2)alter,update,drop:
+	CREATE TABLE students (id int,name varchar(30),class varchar(10),mark int);
+	insert into students values(1,'Arjun','CSE A',100);
+	insert into students values(2,'Dinesh','ECE A',95);
+	insert into students values(3,'Dhiyanesh','IT',97);
+	insert into students values(4,'Bharathan','AIDS',92);
+	select * from students;
+	alter TABLE students add domain varchar(10);
+	update students set domain='Fullstack' where name='Arjun';
+	update students set domain='AI' where id=4;
+	update students set domain='Cloud Computing' where class='IT';
+	update students set domain='MERN-stack' where name='Dinesh';
+	alter TABLE students drop column class;
+	select * from students;
+
+  OUTPUT:
+	1|Arjun|CSE A|100
+	2|Dinesh|ECE A|95
+	3|Dhiyanesh|IT|97
+	4|Bharathan|AIDS|92
+	1|Arjun|100|Fullstack
+	2|Dinesh|95|MERN-stack
+	3|Dhiyanesh|97|Cloud Computing
+	4|Bharathan|92|AI
+
+3) ascending and descending order:
+	CREATE TABLE students (id int,name varchar(30),class varchar(10),mark int);
+ 	insert into students values(1,'Arjun','CSE A',100);
+	insert into students values(2,'Dinesh','ECE A',95);
+	insert into students values(3,'Dhiyanesh','IT',97);
+	insert into students values(4,'Bharathan','AIDS',92);	
+	select * from students;
+	alter TABLE students add domain varchar(10);
+	update students set domain='Fullstack' where name='Arjun';
+	update students set domain='AI' where id=4;
+	update students set domain='Cloud Computing' where class='IT';
+	update students set domain='MERN-stack' where name='Dinesh';
+	alter TABLE students drop column class;
+	select * from students order by mark;	
+	select * from students order by mark desc;
+
+   OUTPUT:
+	1|Arjun|CSE A|100
+	2|Dinesh|ECE A|95
+	3|Dhiyanesh|IT|97
+	4|Bharathan|AIDS|92
+	4|Bharathan|92|AI
+	2|Dinesh|95|MERN-stack
+	3|Dhiyanesh|97|Cloud Computing
+	1|Arjun|100|Fullstack
+	1|Arjun|100|Fullstack
+	3|Dhiyanesh|97|Cloud Computing
+	2|Dinesh|95|MERN-stack
+	4|Bharathan|92|AI
+
+4)COUNT:
+	CREATE TABLE students (id int,name varchar(30),class varchar(10),mark int,age int);
+	insert into students values(1,'Arjun','CSE A',100,21);
+	insert into students values(2,'Dinesh','ECE A',95,21);
+	insert into students values(3,'Dhiyanesh','IT',97,19);
+	insert into students values(4,'Bharathan','AIDS',97,22);
+	insert into students values(5,'Arul','EEE',97,21);
+	select * from students;
+	alter TABLE students add domain varchar(10);	
+	update students set domain='Fullstack' where name='Arjun';
+	update students set domain='AI' where id=4;
+	update students set domain='Cloud Computing' where class='IT';
+	update students set domain='MERN-stack' where name='Dinesh';
+	alter TABLE students drop column class;
+	select mark,count(*)as count from students group by mark;
+	select age,count(*)as count from students group by age;
+  OUTPUT:
+	1|Arjun|CSE A|100|21
+	2|Dinesh|ECE A|95|21
+	3|Dhiyanesh|IT|97|19
+	4|Bharathan|AIDS|97|22
+	5|Arul|EEE|97|21
+	95|1
+	97|3
+	100|1
+	19|1
+	21|3
+	22|1
+
+
+5)AVERAGE AND SUM:
+	CREATE TABLE students (id int,name varchar(30),class varchar(10),mark int,age int);
+	insert into students values(1,'Arjun','CSE A',100,21);
+	insert into students values(2,'Dinesh','ECE A',95,21);
+	insert into students values(3,'Dhiyanesh','IT',97,19);
+	insert into students values(4,'Bharathan','AIDS',97,22);
+	insert into students values(5,'Arul','EEE',97,21);
+	select * from students;
+	alter TABLE students add domain varchar(10);
+	update students set domain='Fullstack' where name='Arjun';
+	update students set domain='AI' where id=4;
+	update students set domain='Cloud Computing' where class='IT';
+	update students set domain='MERN-stack' where name='Dinesh';
+	alter TABLE students drop column class;
+	select sum(mark) from students as total;
+	select avg(mark) from students as average;
+  OUTPUT:
+ 	1|Arjun|CSE A|100|21
+	2|Dinesh|ECE A|95|21
+	3|Dhiyanesh|IT|97|19
+	4|Bharathan|AIDS|97|22
+	5|Arul|EEE|97|21
+	486
+	97.2
+
+6)JOINS
+	create database db;
+	create table student(id int ,name varchar, age int, gender varchar(5),course varchar(20),mark int);
+	insert into student values(1 , ' bharathan ', 20 ,' m ',' cse  ', 90);
+	insert into student values(2 , ' arjun     ', 20 ,' m ',' cse  ', 99);
+	insert into student values(3 , ' dinesh    ', 19 ,' m ',' mech ', 88);
+	insert into student values(4 , ' dhiyanesh ', 17 ,' m ',' eee  ', 94);
+	insert into student values(5 , ' deepak    ', 20 ,' m ',' aids ', 95);
+	insert into student values(6 , ' ajay      ', 19 ,' m ',' ece  ', 80);
+
+	select * from student;
+
+	create table learn(id int ,name varchar, age int, gender varchar(5),course varchar(20),mark int);
+	insert into learn values(7  , ' bharathan ', 20 ,' m ',' cse  ', 90);
+	insert into learn values(8  , ' arjun     ', 20 ,' m ',' cse  ', 99);
+	insert into learn values(9  , ' babu      ', 19 ,' m ',' mec  ', 88);
+	insert into learn values(10 , ' akilan    ', 17 ,' m ',' elite', 94);	
+	insert into learn values(11 , ' fayaz     ', 20 ,' m ',' top  ', 95);
+	insert into learn values(12 , ' bharath   ', 19 ,' m ',' ecc  ', 80);
+	
+	select * from learn;
+
+  LEFT join
+	select * from student left join learn on student.name=learn.name;
+   OUTPUT:
+	1| bharathan |20| m | cse  |90|7| bharathan |20| m | cse  |90
+	2| arjun     |20| m | cse  |99|8| arjun     |20| m | cse  |99
+	3| dinesh    |19| m | mech |88||||||
+	4| dhiyanesh |17| m | eee  |94||||||
+	5| deepak    |20| m | aids |95||||||
+	6| ajay      |19| m | ece  |80||||||
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
